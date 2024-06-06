@@ -10,7 +10,7 @@ from skimage import img_as_ubyte
 grootsteverschil = 50
 
 # vervang 'bestand.txt' met het bestand wat je wil bijknippen.
-with open('x_values.txt', 'r') as input_bestand:
+with open('bestand.txt', 'r') as input_bestand:
     oude_lijst = []
 
     for regel in input_bestand:
