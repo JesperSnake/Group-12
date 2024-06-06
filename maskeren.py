@@ -2,15 +2,18 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import ndimage
+from scipy.ndimage import gaussian_filter
 from matplotlib.animation import FuncAnimation
 from skimage.morphology import skeletonize
 from skimage import img_as_ubyte
+from lmfit import Model
+
 
 # Hoe lager deze waarde is, hoe strenger hij wordt.
 grootsteverschil = 50
 
 # vervang 'bestand.txt' met het bestand wat je wil bijknippen.
-with open('bestand.txt', 'r') as input_bestand:
+with open('x_values.txt', 'r') as input_bestand:
     oude_lijst = []
 
     for regel in input_bestand:
@@ -38,8 +41,30 @@ for value in delta_values:
     index += 1
 
 
+plt.plot(oude_lijst)
+plt.show()
+
+
 plt.figure('figure 1')
 plt.plot(oude_lijst)
-
 plt.plot(new_values)
 plt.show()
+
+
+sigma = 1  # Standard deviation for Gaussian kernel
+smooth_values = gaussian_filter(new_values, sigma=sigma)
+
+
+plt.plot(smooth_values)
+plt.show()
+
+sampling_rate = 500
+t_lijst = []
+for i in range (len(smooth_values)):
+    t_lijst.append(i)
+
+#   fft_result = np.fft.fft(smooth_values)
+#   frequencies = np.fft.fftfreq(len(smooth_values), 1/sampling_rate)
+#   magnitude = np.abs(fft_result)
+#   max_frequency = frequencies[np.argmax(magnitude)]
+#   print(max_frequency)
