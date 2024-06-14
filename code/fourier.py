@@ -1,3 +1,10 @@
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+from scipy import ndimage
+from scipy.fft import fft, fftfreq, fftshift
+
+
 # Frame rate of the camera in frames per second
 frame_rate = 30.0  
 sampling_interval = 1.0 / frame_rate  # Sampling interval in seconds
