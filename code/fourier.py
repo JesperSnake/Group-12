@@ -19,6 +19,7 @@ y_fft_magnitude = 2.0/N * np.abs(y_fft[0:N//2])
 time_vector = np.arange(N) * sampling_interval
 
 
+
 # Plot the original signal
 plt.figure(figsize=(12, 6))
 
@@ -27,3 +28,14 @@ plt.plot(time_vector, smooth_values)
 plt.title('Original Signal')
 plt.xlabel('Time [s]')
 plt.ylabel('x-position')
+
+# Plot the Fourier transform magnitude
+plt.subplot(2, 1, 2)
+plt.bar(yf[1::], y_fft_magnitude[1::], width = 0.1)
+plt.title('Fourier Transform')
+plt.xlabel('Frequency [Hz]')
+plt.ylabel('Magnitude')
+
+plt.tight_layout()
+plt.show()
+
