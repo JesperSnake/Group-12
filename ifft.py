@@ -63,48 +63,11 @@ def fourierfunctie(wormnummer):
 
     # FILTER
     magnitudes = np.abs(short_yfft)
-    top_indices = np.argsort(magnitudes)[-Highest_freqs*2:]   
+    top_indices = np.argsort(magnitudes)[-Highest_freqs:]   
+
+    highest_freq = y_fft[top_indices]
 
 
-    filtered_y_fft = np.copy(y_fft)
-    filtered_y_fft = np.zeros_like(y_fft)
-    filtered_y_fft[top_indices] = y_fft[top_indices]
 
-
-    # Perform the inverse Fourier transform
-    reconstructed_signal = ifft(filtered_y_fft).real
-
-    # Plot the original signal
-    plt.figure(figsize=(12, 8))
-
-    plt.subplot(4, 1, 1)
-    plt.plot(time_vector, og_list)
-    plt.title('Original Signal')
-    plt.xlabel('Time [s]')
-    plt.ylabel('x-position')
-
-    # Plot the Fourier transform magnitude
-    plt.subplot(4, 1, 2)
-    plt.bar(yf[:N], y_fft_magnitude[:N], width=0.1)
-    plt.title('Fourier Transform')
-    plt.xlabel('Frequency [Hz]')
-    plt.ylabel('Magnitude')
-    
-
-    plt.subplot(4, 1, 3)
-    plt.bar(yf[:N//2], 2.0/N * np.abs(filtered_y_fft[:N//2]), width=0.1)
-    plt.title('Filtered Fourier Transform')
-    plt.xlabel('Frequency [Hz]')
-    plt.ylabel('Magnitude')
-
-    # Plot the reconstructed signal
-    plt.subplot(4, 1, 4)
-    plt.plot(time_vector, reconstructed_signal)
-    plt.title('Reconstructed Signal from Inverse Fourier Transform')
-    plt.xlabel('Time [s]')
-    plt.ylabel('x-position')
-
-    plt.tight_layout()
-    plt.show()
 
 fourierfunctie(2)
